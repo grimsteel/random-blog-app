@@ -1,0 +1,38 @@
+{{ @extendsFile("layout.html", {title: "Home"}) }}
+
+{{ @if (it.username) }}
+<div class="alert alert-light mb-3" role="alert">
+  <strong>Welcome,</strong> {{ it.username }}
+</div>
+
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="/posts/create/">Write Post</a>
+  </li>
+  <li class="nav-item">
+    <form method="post" action="/logout/">
+      <button type="submit" class="nav-link">Log out</button>
+    </form>
+  </li>
+</ul>
+{{ #else }}
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="/signup/">Sign up</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/login/">Log in</a>
+  </li>
+</ul>
+{{ /if }}
+
+<h3>Posts:</h3>
+<ul>
+  {{ @each (it.posts) => post }}
+    <li>
+      <a href="/posts/{{ post.id }}/">{{ post.title }}</a> - <span class="text-muted">{{ new Date(post.date).toLocaleDateString() }}</span>
+    </li>
+  {{ /each }}
+</ul>
+
+{{/extendsFile}}

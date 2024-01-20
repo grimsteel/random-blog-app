@@ -1,0 +1,23 @@
+{{ @extendsFile("layout.html", { title: it.title, errors: it.errors }) }}
+
+<p class="text-muted">{{ it.date.toLocaleDateString() }} by {{ it.author?.username ?? "Unknown user" }}</p>
+
+<p class="mb-3">{{* it.content }}</p>
+
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+  {{ @if (it.author?.id === it.session.userId) }}
+  <li class="nav-item">
+    <a class="nav-link" href="edit/">Edit</a>
+  </li>
+  <li class="nav-item">
+    <form method="post" action="./delete/">
+      <button type="submit" class="nav-link">Delete</button>
+    </form>
+  </li>
+  {{ /if }}
+</ul>
+
+{{ /extendsFile }}

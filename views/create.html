@@ -1,0 +1,13 @@
+{{ @extendsFile("layout.html", { title: it.postId ? `Edit ${it.title}` : "Create Post", errors: it.errors }) }}
+<form method="post">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{ it.title ?? "" }}" required>
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea class="form-control" id="content" rows="20" required name="content">{{ it.content ?? "" }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{{ /extendsFile }}
